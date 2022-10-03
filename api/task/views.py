@@ -18,7 +18,3 @@ class TaskViewSet(ModelViewSet):
     def perform_create(self, serializer):
         project = Project.objects.get(pk=self.kwargs.get('project_pk'))
         serializer.save(project=project)
-
-
-
-

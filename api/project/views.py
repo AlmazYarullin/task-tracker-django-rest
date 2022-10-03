@@ -1,6 +1,6 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from api.project.models import Project
 from api.project.serializers import ProjectSerializer
@@ -21,9 +21,7 @@ class ProjectListCreate(APIView):
 
 class ProjectDetails(APIView):
     def get(self, request, pk):
-        print(pk)
         project = get_object_or_404(Project, pk=pk)
-        print(project)
         serializer = ProjectSerializer(project)
         return Response(serializer.data)
 
@@ -38,4 +36,3 @@ class ProjectDetails(APIView):
         project = get_object_or_404(Project, pk=pk)
         project.delete()
         return Response()
-
