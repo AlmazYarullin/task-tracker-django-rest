@@ -1,4 +1,3 @@
-from rest_framework.exceptions import NotFound
 from rest_framework.viewsets import ModelViewSet
 
 from api.project.models import Project
@@ -17,4 +16,4 @@ class TaskViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         project = Project.objects.get(pk=self.kwargs.get('project_pk'))
-        serializer.save(project=project)
+        serializer.save(project=project, user_creator=self.request.user)

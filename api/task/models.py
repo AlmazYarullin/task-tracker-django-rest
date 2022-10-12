@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from api.project.models import Project
@@ -10,3 +11,4 @@ class Task(models.Model):
     time_deadline = models.DateTimeField(verbose_name='Deadline')
     time_created = models.DateTimeField(auto_now_add=True)
     time_updated = models.DateTimeField(auto_now=True)
+    user_creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

@@ -2,8 +2,8 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.project.models import Project
-from api.project.serializers import ProjectSerializer
+from .models import Project
+from .serializers import ProjectSerializer
 
 
 class ProjectListCreate(APIView):
@@ -15,7 +15,7 @@ class ProjectListCreate(APIView):
     def post(self, request):
         serializer = ProjectSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(members=(self.request.user, ), owner=request.user)
         return Response(serializer.data)
 
 
