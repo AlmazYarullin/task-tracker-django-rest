@@ -9,7 +9,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
 
     def create(self, validated_data: dict):
-        print(self.is_valid(raise_exception=True))
         user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
